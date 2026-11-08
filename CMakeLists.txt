@@ -1,0 +1,51 @@
+cmake_minimum_required(VERSION 3.16)
+project(optionpricer LANGUAGES CXX)
+if(NOT CMAKE_BUILD_TYPE AND NOT CMAKE_CONFIGURATION_TYPES)
+  set(CMAKE_BUILD_TYPE Release CACHE STRING "Build type" FORCE)  # benchmarks are meaningless at -O0
+endif()
+set(CMAKE_CXX_STANDARD 17)
+set(CMAKE_CXX_STANDARD_REQUIRED ON)
+set(CMAKE_CXX_EXTENSIONS OFF)
+set(CMAKE_POSITION_INDEPENDENT_CODE ON)
+
+add_library(optionpricer_core STATIC core/src/validate.cpp core/src/black_scholes.cpp core/src/binomial.cpp core/src/monte_carlo.cpp)
+target_include_directories(optionpricer_core PUBLIC core/include)
+if(MSVC)
+  target_compile_options(optionpricer_core PRIVATE /W4)
+else()
+  target_compile_options(optionpricer_core PRIVATE -Wall -Wextra -Wpedantic)
+endif()
+
+include(FetchContent)
+FetchContent_Declare(Catch2 GIT_REPOSITORY https://github.com/catchorg/Catch2.git GIT_TAG v3.5.4)
+FetchContent_Declare(nlohmann_json GIT_REPOSITORY https://github.com/nlohmann/json.git GIT_TAG v3.11.3 GIT_SHALLOW TRUE)
+FetchContent_MakeAvailable(Catch2 nlohmann_json)
+
+enable_testing()
+add_executable(test_validate tests/core/test_validate.cpp)
+target_link_libraries(test_validate PRIVATE optionpricer_core Catch2::Catch2WithMain)
+add_test(NAME validate COMMAND test_validate)
+
+add_executable(test_black_scholes tests/core/test_black_scholes.cpp)
+target_link_libraries(test_black_scholes PRIVATE optionpricer_core Catch2::Catch2WithMain nlohmann_json::nlohmann_json)
+target_compile_definitions(test_black_scholes PRIVATE GOLDEN_PATH="${CMAKE_SOURCE_DIR}/golden/vectors.json")
+add_test(NAME black_scholes COMMAND test_black_scholes)
+
+add_executable(test_binomial tests/core/test_binomial.cpp)
+target_link_libraries(test_binomial PRIVATE optionpricer_core Catch2::Catch2WithMain nlohmann_json::nlohmann_json)
+target_compile_definitions(test_binomial PRIVATE GOLDEN_PATH="${CMAKE_SOURCE_DIR}/golden/vectors.json")
+add_test(NAME binomial COMMAND test_binomial)
+
+add_executable(test_monte_carlo tests/core/test_monte_carlo.cpp)
+target_link_libraries(test_monte_carlo PRIVATE optionpricer_core Catch2::Catch2WithMain)
+add_test(NAME monte_carlo COMMAND test_monte_carlo)
+
+option(OPTIONPRICER_BUILD_PYTHON "Build the pybind11 module" ON)
+if(OPTIONPRICER_BUILD_PYTHON)
+  FetchContent_Declare(pybind11 GIT_REPOSITORY https://github.com/pybind/pybind11.git GIT_TAG v2.13.6 GIT_SHALLOW TRUE)
+  FetchContent_MakeAvailable(pybind11)
+  pybind11_add_module(optionpricer_cpp bindings/module.cpp)
+  target_link_libraries(optionpricer_cpp PRIVATE optionpricer_core)
+  set_target_properties(optionpricer_cpp PROPERTIES LIBRARY_OUTPUT_DIRECTORY ${CMAKE_BINARY_DIR})
+endif()
+

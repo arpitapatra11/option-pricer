@@ -1,0 +1,382 @@
+{
+  "cases": [
+    {
+      "id": "hull-call",
+      "option": {
+        "spot": 42,
+        "strike": 40,
+        "rate": 0.1,
+        "vol": 0.2,
+        "expiry": 0.5,
+        "div_yield": 0.0,
+        "type": "call"
+      },
+      "european": {
+        "price": 4.76
+      },
+      "tol": 0.005,
+      "source": "hull"
+    },
+    {
+      "id": "hull-put",
+      "option": {
+        "spot": 42,
+        "strike": 40,
+        "rate": 0.1,
+        "vol": 0.2,
+        "expiry": 0.5,
+        "div_yield": 0.0,
+        "type": "put"
+      },
+      "european": {
+        "price": 0.81
+      },
+      "tol": 0.005,
+      "source": "hull"
+    },
+    {
+      "id": "itm-call",
+      "option": {
+        "spot": 110,
+        "strike": 100,
+        "rate": 0.05,
+        "vol": 0.2,
+        "expiry": 1.0,
+        "div_yield": 0.0,
+        "type": "call"
+      },
+      "european": {
+        "price": 17.662953740590453,
+        "delta": 0.7957541713095866,
+        "gamma": 0.012886510906085861,
+        "vega": 31.185356392727783
+      },
+      "tol": 1e-09,
+      "source": "python-ref"
+    },
+    {
+      "id": "atm-put",
+      "option": {
+        "spot": 100,
+        "strike": 100,
+        "rate": 0.05,
+        "vol": 0.25,
+        "expiry": 0.5,
+        "div_yield": 0.0,
+        "type": "put"
+      },
+      "european": {
+        "price": 5.791006402176492,
+        "delta": -0.4091198219556875,
+        "gamma": 0.02197945736915667,
+        "vega": 27.47432171144584
+      },
+      "tol": 1e-09,
+      "source": "python-ref"
+    },
+    {
+      "id": "otm-call",
+      "option": {
+        "spot": 90,
+        "strike": 120,
+        "rate": 0.03,
+        "vol": 0.3,
+        "expiry": 2.0,
+        "div_yield": 0.0,
+        "type": "call"
+      },
+      "european": {
+        "price": 7.896545382090693,
+        "delta": 0.37277228352536196,
+        "gamma": 0.009912035770965322,
+        "vega": 48.17249384689147
+      },
+      "tol": 1e-09,
+      "source": "python-ref"
+    },
+    {
+      "id": "otm-put",
+      "option": {
+        "spot": 130,
+        "strike": 100,
+        "rate": 0.02,
+        "vol": 0.15,
+        "expiry": 0.25,
+        "div_yield": 0.0,
+        "type": "put"
+      },
+      "european": {
+        "price": 0.00038443291247309413,
+        "delta": -0.00015767252547228974,
+        "gamma": 6.222875972711663e-05,
+        "vega": 0.03943747647706016
+      },
+      "tol": 1e-09,
+      "source": "python-ref"
+    },
+    {
+      "id": "yield-call",
+      "option": {
+        "spot": 100,
+        "strike": 105,
+        "rate": 0.05,
+        "vol": 0.2,
+        "expiry": 1.0,
+        "div_yield": 0.03,
+        "type": "call"
+      },
+      "european": {
+        "price": 6.506618776970811,
+        "delta": 0.46821260591218816,
+        "gamma": 0.01933890045307749,
+        "vega": 38.677800906154985
+      },
+      "tol": 1e-09,
+      "source": "python-ref"
+    },
+    {
+      "id": "yield-put",
+      "option": {
+        "spot": 100,
+        "strike": 95,
+        "rate": 0.04,
+        "vol": 0.35,
+        "expiry": 1.5,
+        "div_yield": 0.02,
+        "type": "put"
+      },
+      "european": {
+        "price": 12.317322977899387,
+        "delta": -0.332974882875577,
+        "gamma": 0.008323960379997128,
+        "vega": 43.700791994984904
+      },
+      "tol": 1e-09,
+      "source": "python-ref"
+    },
+    {
+      "id": "negrate-call",
+      "option": {
+        "spot": 100,
+        "strike": 100,
+        "rate": -0.01,
+        "vol": 0.2,
+        "expiry": 1.0,
+        "div_yield": 0.0,
+        "type": "call"
+      },
+      "european": {
+        "price": 7.513058243602444,
+        "delta": 0.5199388058383725,
+        "gamma": 0.019922195704738202,
+        "vega": 39.8443914094764
+      },
+      "tol": 1e-09,
+      "source": "python-ref"
+    },
+    {
+      "id": "negrate-put",
+      "option": {
+        "spot": 100,
+        "strike": 110,
+        "rate": -0.02,
+        "vol": 0.25,
+        "expiry": 2.0,
+        "div_yield": 0.01,
+        "type": "put"
+      },
+      "european": {
+        "price": 24.541522369054015,
+        "delta": -0.5915838532466481,
+        "gamma": 0.01068576426081101,
+        "vega": 53.428821304055056
+      },
+      "tol": 1e-09,
+      "source": "python-ref"
+    },
+    {
+      "id": "short-expiry-call",
+      "option": {
+        "spot": 100,
+        "strike": 100,
+        "rate": 0.05,
+        "vol": 0.2,
+        "expiry": 0.02,
+        "div_yield": 0.0,
+        "type": "call"
+      },
+      "european": {
+        "price": 1.1784574156997039,
+        "delta": 0.519738575177072,
+        "gamma": 0.14087471861340128,
+        "vega": 5.6349887445360505
+      },
+      "tol": 1e-09,
+      "source": "python-ref"
+    },
+    {
+      "id": "high-vol-put",
+      "option": {
+        "spot": 50,
+        "strike": 60,
+        "rate": 0.01,
+        "vol": 0.8,
+        "expiry": 1.0,
+        "div_yield": 0.0,
+        "type": "put"
+      },
+      "european": {
+        "price": 22.076385060312425,
+        "delta": -0.42677215619450326,
+        "gamma": 0.009805064823457095,
+        "vega": 19.61012964691419
+      },
+      "tol": 1e-09,
+      "source": "python-ref"
+    },
+    {
+      "id": "am-put-itm",
+      "option": {
+        "spot": 90,
+        "strike": 100,
+        "rate": 0.05,
+        "vol": 0.2,
+        "expiry": 1.0,
+        "div_yield": 0.0,
+        "type": "put"
+      },
+      "european": {
+        "price": 10.214164528888958,
+        "delta": -0.5701682681104568,
+        "gamma": 0.021819747579660095,
+        "vega": 35.34799107904935
+      },
+      "american": {
+        "price": 11.492733344242174
+      },
+      "tol": 1e-09,
+      "american_tol": 0.01,
+      "source": "python-ref-N20000"
+    },
+    {
+      "id": "am-put-atm",
+      "option": {
+        "spot": 100,
+        "strike": 100,
+        "rate": 0.05,
+        "vol": 0.3,
+        "expiry": 1.0,
+        "div_yield": 0.0,
+        "type": "put"
+      },
+      "european": {
+        "price": 9.354197236057232,
+        "delta": -0.37574827209398753,
+        "gamma": 0.012647764437231512,
+        "vega": 37.94329331169454
+      },
+      "american": {
+        "price": 9.869997770190668
+      },
+      "tol": 1e-09,
+      "american_tol": 0.01,
+      "source": "python-ref-N20000"
+    },
+    {
+      "id": "am-put-otm",
+      "option": {
+        "spot": 110,
+        "strike": 100,
+        "rate": 0.08,
+        "vol": 0.25,
+        "expiry": 0.5,
+        "div_yield": 0.0,
+        "type": "put"
+      },
+      "european": {
+        "price": 2.3155787525500777,
+        "delta": -0.19660283292916786,
+        "gamma": 0.014249210124858656,
+        "vega": 21.551930313848718
+      },
+      "american": {
+        "price": 2.453265295725426
+      },
+      "tol": 1e-09,
+      "american_tol": 0.01,
+      "source": "python-ref-N20000"
+    },
+    {
+      "id": "am-put-yield",
+      "option": {
+        "spot": 100,
+        "strike": 100,
+        "rate": 0.03,
+        "vol": 0.2,
+        "expiry": 2.0,
+        "div_yield": 0.04,
+        "type": "put"
+      },
+      "european": {
+        "price": 11.444936452775366,
+        "delta": -0.4355392261020326,
+        "gamma": 0.012987805541261032,
+        "vega": 51.95122216504413
+      },
+      "american": {
+        "price": 11.489000565165842
+      },
+      "tol": 1e-09,
+      "american_tol": 0.01,
+      "source": "python-ref-N20000"
+    },
+    {
+      "id": "am-call-yield",
+      "option": {
+        "spot": 100,
+        "strike": 95,
+        "rate": 0.03,
+        "vol": 0.25,
+        "expiry": 1.0,
+        "div_yield": 0.06,
+        "type": "call"
+      },
+      "european": {
+        "price": 10.295142735797569,
+        "delta": 0.5492688543101275,
+        "gamma": 0.01470010355956862,
+        "vega": 36.75025889892155
+      },
+      "american": {
+        "price": 10.81758523362071
+      },
+      "tol": 1e-09,
+      "american_tol": 0.01,
+      "source": "python-ref-N20000"
+    },
+    {
+      "id": "am-call-highyield",
+      "option": {
+        "spot": 120,
+        "strike": 100,
+        "rate": 0.02,
+        "vol": 0.3,
+        "expiry": 1.5,
+        "div_yield": 0.08,
+        "type": "call"
+      },
+      "european": {
+        "price": 19.982303360732708,
+        "delta": 0.5926501967389858,
+        "gamma": 0.0073006384903671305,
+        "vega": 47.308137417579
+      },
+      "american": {
+        "price": 23.1718973209313
+      },
+      "tol": 1e-09,
+      "american_tol": 0.01,
+      "source": "python-ref-N20000"
+    }
+  ]
+}

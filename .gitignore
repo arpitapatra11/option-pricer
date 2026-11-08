@@ -1,0 +1,17 @@
+.superpowers/
+build/
+__pycache__/
+*.pyc
+
+# Python / test caches
+.pytest_cache/
+*.egg-info/
+.venv/
+venv/
+
+# IDEs and OS files
+.vs/
+.vscode/
+.idea/
+.DS_Store
+Thumbs.db
